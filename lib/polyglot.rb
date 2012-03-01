@@ -38,7 +38,7 @@ module Polyglot
   end
 
   def self.load(*a, &b)
-    file = a[0].join
+    file = a[0].kindOf?(Array)? a[0].join : a[0]
     return if @loaded[file] # Check for $: changes or file time changes and reload?
     begin
       source_file, loader = Polyglot.find(file, *a[1..-1], &b)
